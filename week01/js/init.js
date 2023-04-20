@@ -1,4 +1,4 @@
-const map = L.map('the_map').setView([34.0709, -118.444], 15); // (1)!
+const map = L.map('the_map').setView([34.0709, -118.444], 5); // (1)!
 // var map = L.map('map').setView([51.505, -0.09], 13);
 // Leaflet tile layer, i.e. the base map
  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
