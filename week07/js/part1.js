@@ -1,9 +1,17 @@
 // declare map variable
 const map = L.map('the_map').setView([34.0709,-118.444], 5);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+let Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+    maxZoom: 16
+});
+
+Esri_WorldGrayCanvas.addTo(map);
+
+let LAcountyMarker = L.icon({
+    iconUrl: 'media/LAcountyMarker.png',
+    iconSize: [50,50]
+})
 
 // use our marker functions
 addMarker(34.161327, -118.167648,'RE:SET Concert Series at the Rose Bowl', 'media/steve-lacy.png','Featuring Steve Lacy, Toro y Moi, Foushee, and James Blake!')
@@ -14,7 +22,8 @@ addMarker(34.129250, -118.478060,'Japanese Breakfast with Ichiko Aoba at Walt Di
 // create a function to add markers
 function addMarker(lat,lng,title,image,message){
     console.log(message)
-    L.marker([lat,lng]).addTo(map).bindPopup(`<h2>${title}</h2> <img src="${image}" height="200px"> </img> <h3>${message}</h3>`)
+    let marker = L.marker([lat,lng]).addTo(map).bindPopup(`<h2>${title}</h2> <img src="${image}" height="200px"> </img> <h3>${message}</h3>`)
+    marker.setIcon(LAcountyMarker);
     createButtons(lat,lng,title);
     return message
 }
