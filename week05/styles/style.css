@@ -1,0 +1,39 @@
+body{
+    display: grid;
+    /* grid-template-columns: 1fr;  */
+    grid-auto-rows: 1fr 8fr 8r 1fr;
+    grid-template-areas: "header" "info" "main_content" "footer";
+    background-color: rgb(251, 251, 251);
+    gap: 10px;
+    /* height: 100vh; */
+}
+
+header{
+    grid-area: header;
+}
+
+#footer{
+    grid-area: footer;
+}
+
+.info{
+    grid-area: info;
+
+}
+
+.main{
+    grid-area: main_content;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "main_map main_form";
+    gap: 10px;
+    display: grid;
+}
+
+#the_map{
+    grid-area: main_map;
+    height: 80vh;
+}
+
+#the_form{
+    grid-area: main_form;
+}

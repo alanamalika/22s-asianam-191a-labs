@@ -16,17 +16,23 @@ function addMarker(lat,lng,title,message){
     return message
 }
 
-fetch("map.geojson")
-    .then(response => {
-        return response.json();
-    })
-    .then(data =>{
-        // Basic Leaflet method to add GeoJSON data
-        L.geoJSON(data, {
-                pointToLayer: (feature, latlng) => { 
-                    return L.circleMarker(latlng, {color: feature.properties.Color})
-                }
-            }).bindPopup(layer => {
-                return layer.feature.properties.Place;
-            }).addTo(map);
-    });
+function loadData(url){
+    fetch(url)
+        .then(response => {
+            return response.json();
+        })
+        .then(data =>{
+            // Basic Leaflet method to add GeoJSON data
+            L.geoJSON(data, {
+                    pointToLayer: (feature, latlng) => { 
+                        return L.circleMarker(latlng, {color: feature.properties.Color})
+                    }
+              }).bindPopup(layer => {
+                    return layer.feature.properties.Place;
+                }).addTo(map);
+        });
+}
+
+const localGeojson = "map.geojson"
+
+loadData(localGeojson)

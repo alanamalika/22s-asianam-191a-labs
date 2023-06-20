@@ -17,7 +17,6 @@ header{
 
 .main{
     grid-area: main_content;
-    grid-template-areas: "content" "main_map";
     display: grid;
 }
 

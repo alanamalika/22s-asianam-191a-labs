@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+body{
+    display: grid;
+    /* grid-template-columns: 1fr;  */
+    grid-auto-rows: 1fr 8fr 8r 1fr;
+    grid-template-areas: "header" "info" "main_content" "footer";
+    background-color: rgb(251, 251, 251);
+    gap: 10px;
+    font-family: 'Poppins', sans-serif;
+    /* height: 100vh; */
+}
+
+h1{
+    text-transform: uppercase;
+}
+
+h2{
+    text-transform: uppercase; 
+}
+
+header{
+    grid-area: header;
+    font-size: x-large;
+    width: 100%;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+}
+
+#nav{
+    background-color: rgb(251, 251, 251);
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(251, 251, 251);
+  }
+  
+nav > li {
+    float: left;
+  }
+  
+li a {
+    display: block;
+    text-align: center;
+    padding: 14px 25px;
+    text-decoration: none;
+    color: rgb(25, 0, 215);
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: rgb(25, 0, 215);
+    color: rgb(251, 251, 251);
+  }
+
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky{
+    position: fixed;
+    top: 0;
+    width: 1424px;
+}
+
+.info{
+    grid-area: info;
+}
+
+.main{
+    grid-area: main_content;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "main_map main_form";
+    gap: 10px;
+    display: grid;
+}
+
+#the_map{
+    grid-area: main_map;
+    height: 80vh;
+}
+
+#the_form{
+    grid-area: main_form;
+    display: grid;
+    grid-template-rows: 3fr 1fr; 
+    grid-template-areas: "survey" "buttonHome";
+    gap: 10px;
+}
+
+#theSurvey{
+    grid-area: survey; /* (1)! */
+}
+
+/* css for the button */
+#surveyButton{
+    padding: 15px 32px;
+    margin: 10px;
+    background-color: #4CAF50;
+    cursor: pointer;
+}
+
+#placeForButtons{
+    grid-area: buttonHome; /* (2)! */
+}
+
+.footer{
+    grid-area: footer;
+}
