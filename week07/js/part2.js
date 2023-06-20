@@ -10,14 +10,15 @@ let layers = {
     "Restaurants outside of LA County": nonLAcounty
 }
 
-let circleOptions = {
-    radius: 4,
-    fillColor: "#ff7800",
-    color: "#000",
-    weight: 1,
-    opacity: 1,
-    fillOpacity: 0.8
-}
+let LAcountyMarker = L.icon({
+    iconUrl: 'media/LAcountyMarker.png',
+    iconSize: [50,50]
+})
+
+let nonLAcountyMarker = L.icon({
+    iconUrl: 'media/nonLAcountyMarker.png',
+    iconSize: [50,50]
+})
 
 const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS1gegAf1mxnR5r2jdw1LzcANbW6nwWIFdmgnyUY8ov9YX0jn6RKPuf_gVCIO4GcxYh6P3AAW7ZlSMX/pub?output=csv"
 
@@ -35,14 +36,15 @@ let Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/r
 Esri_WorldGrayCanvas.addTo(map);
 
 function addMarker(data){
+    let marker = L.marker([data.lat,data.lng]).bindPopup(`<h2>${data['What is your favorite restaurant that reminds you of home?']}</h2> <h3>${data['Which city is this restaurant located at?']}</h3>`)
     if(data['Is this restaurant in Los Angeles County?'] == "Yes"){
-        circleOptions.fillColor = "red"
-        LAcounty.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>${data['What is your favorite restaurant that reminds you of home?']}</h2> <h3>${data['Which city is this restaurant located at?']}</h3>`))
+        marker.setIcon(LAcountyMarker);
+        LAcounty.addLayer(marker);
         createButtons(data.lat,data.lng,data['What is your favorite restaurant that reminds you of home?'])
         }
     else{
-        circleOptions.fillColor = "blue"
-        nonLAcounty.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>${data['What is your favorite restaurant that reminds you of home?']}</h2> <h3>${data['Which city is this restaurant located at?']}</h3>`))
+        marker.setIcon(nonLAcountyMarker);
+        nonLAcounty.addLayer(marker);
         createButtons(data.lat,data.lng,data['What is your favorite restaurant that reminds you of home?'])
     }
     return data
